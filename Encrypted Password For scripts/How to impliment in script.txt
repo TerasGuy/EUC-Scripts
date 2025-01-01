@@ -1,0 +1,42 @@
+1. add this varaible to your varaible list in the head of the script
+
+-------------------------Section Start-------------------------
+
+$SecurePasswordFilePath = '.\SecurePassword.xml'
+
+-------------------------Section End -------------------------
+
+
+
+
+
+
+
+2. impliment this section after the varaible list
+
+
+-------------------------Section Start-------------------------
+
+ #region check if password file exists and load it
+# Check if the SecurePassword.xml file exists
+if (-not (Test-Path -Path $SecurePasswordFilePath)) {
+    Write-Host "SecurePassword.xml file not found. Running EncryptPassword.ps1 script." -ForegroundColor Yellow
+    & ".\StoreEncryptPassword.ps1" -SecurePasswordFilePath $SecurePasswordFilePath
+}
+
+# Read the encrypted password from the file
+$SecurePassword = Import-CliXml -Path $SecurePasswordFilePath
+$PlainTextPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecurePassword))
+
+#endregion
+
+-------------------------Section End-------------------------
+
+
+when you run the script for the first time he will ask you to enter the password in clear text for the first time and will create an enrypted file.
+
+
+
+
+
+
