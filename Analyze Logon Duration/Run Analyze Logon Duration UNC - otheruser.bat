@@ -1,0 +1,1 @@
+powershell.exe -NoProfile -NoLogo -NonInteractive -ExecutionPolicy Bypass -File "\\172.16.64.11\Installs\Tools and scripts\Analyze_Logon_Duration-RUN ME.ps1" Domain\User
